@@ -1,9 +1,9 @@
 from typing import Annotated
 
 from fastapi import APIRouter, Depends
-from loacation import LocationRepository
-from location_schemas import SLocation, SLocationAdd, SLocationId
-from repository_track import TrackRepository
+
+from .location_manager import LocationRepository
+from .location_schemas import SLocationAdd, SLocationId
 
 location_router = APIRouter(
     prefix="/location",

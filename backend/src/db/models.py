@@ -1,7 +1,8 @@
 import datetime
 from typing import Annotated
 
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy import ForeignKey, text
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 created_at = Annotated[datetime.datetime, mapped_column(server_default=text("TIMEZONE('utc', now())"))]
 updated_at = Annotated[datetime.datetime, mapped_column(
