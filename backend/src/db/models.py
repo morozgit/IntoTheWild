@@ -1,19 +1,17 @@
 import datetime
-from typing import Annotated
+from typing import Annotated, List
 
 from sqlalchemy import ForeignKey, text
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 created_at = Annotated[datetime.datetime, mapped_column(server_default=text("TIMEZONE('utc', now())"))]
 updated_at = Annotated[datetime.datetime, mapped_column(
-                        server_default=text("TIMEZONE('utc', now())"),
-                        onupdate=datetime.datetime.now(),
-                      )]
-
+    server_default=text("TIMEZONE('utc', now())"),
+    onupdate=text("TIMEZONE('utc', now())"),
+)]
 
 class Base(DeclarativeBase):
     pass
-
 
 class LocationOrm(Base):
     __tablename__ = "locations"
@@ -22,10 +20,9 @@ class LocationOrm(Base):
     name: Mapped[str]
     description: Mapped[str | None]
     image: Mapped[str | None]
-    track: Mapped[list["TrackOrm"]] = relationship(
+    track: Mapped[List["TrackOrm"]] = relationship(
         back_populates="location",
     )
-
 
 class TrackOrm(Base):
     __tablename__ = "tracks"

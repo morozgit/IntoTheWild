@@ -1,7 +1,6 @@
 from db.models import LocationOrm
 from db.session import async_session
 from sqlalchemy import select
-
 from .location_schemas import SLocation, SLocationAdd, SLocationId
 
 

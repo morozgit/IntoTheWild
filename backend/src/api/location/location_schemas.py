@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
 
 
 class SLocationAdd(BaseModel):
@@ -10,10 +10,10 @@ class SLocationAdd(BaseModel):
 class SLocation(SLocationAdd):
     id: int
 
-    model_config = ConfigDict(from_attributes=True)
+    class Config:
+        orm_mode = True
 
 
 class SLocationId(BaseModel):
     ok: bool = True
     location_id: int
-

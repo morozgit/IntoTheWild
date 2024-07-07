@@ -10,13 +10,12 @@ location_router = APIRouter(
     tags=["Локации"],
 )
 
-@location_router.post("")
+@location_router.post("", response_model=SLocationId)
 async def add_location(
-        location: Annotated[SLocationAdd, Depends()],
+        location: Annotated[SLocationAdd, Depends()]
 ) -> SLocationId:
     location_id = await LocationRepository.add_one_location(location)
-    
-    return {"ok": True, "location_id": location_id}
+    return SLocationId(ok=True, location_id=location_id)
 
 
 # @location_router.get("/all_location")
