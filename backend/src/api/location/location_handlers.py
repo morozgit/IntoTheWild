@@ -1,9 +1,11 @@
 from typing import Annotated
 
+from db.session import get_db
 from fastapi import APIRouter, Depends
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from .location_manager import LocationRepository
-from .location_schemas import SLocationAdd, SLocationId
+from .location_schemas import SLocation, SLocationAdd, SLocationId
 
 location_router = APIRouter(
     prefix="/location",
@@ -11,17 +13,15 @@ location_router = APIRouter(
 )
 
 @location_router.post("", response_model=SLocationId)
-async def add_location(
-        location: Annotated[SLocationAdd, Depends()]
-) -> SLocationId:
+async def add_location(location: SLocationAdd, db: AsyncSession = Depends(get_db)) -> SLocationId:
     location_id = await LocationRepository.add_one_location(location)
     return SLocationId(ok=True, location_id=location_id)
 
 
-# @location_router.get("/all_location")
-# async def get_locations() -> list[SLocation]:
-#     locations = await LocationRepository.find_all()
-#     return locations
+@location_router.get("/all_location")
+async def get_locations() -> list[SLocation]:
+    locations = await LocationRepository.find_all()
+    return locations
 
 
 # @location_router.get("/{location}")
