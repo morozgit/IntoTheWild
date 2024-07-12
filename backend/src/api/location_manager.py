@@ -1,6 +1,7 @@
-from db.models import LocationOrm
-from db.session import async_session
 from sqlalchemy import select
+
+from backend.db.models import LocationOrm
+from backend.db.session import async_session
 
 from .location_schemas import SLocation, SLocationAdd, SLocationId
 

@@ -1,11 +1,11 @@
 import uvicorn
-from api.location.location_handlers import location_router
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
+from backend.src.api.location_handlers import location_router
+
 app = FastAPI(title="IntoTheWild")
 app.include_router(location_router)
-app.mount("/static", StaticFiles(directory="../static"), name="static")
 
 if __name__ == '__main__':
     uvicorn.run(app, host="127.0.0.1", port=8000)

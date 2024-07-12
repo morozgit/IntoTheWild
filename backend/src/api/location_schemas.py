@@ -10,8 +10,8 @@ class SLocationAdd(BaseModel):
 class SLocation(SLocationAdd):
     id: int
 
-    class Config:
-        orm_mode = True
+    class ConfigDict:
+        from_attributes = True
 
 
 class SLocationId(BaseModel):
