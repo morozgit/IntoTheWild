@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from backend.db.session import get_db
-
+# from backend.db.session import get_db
+from db.session import get_db
 from .location_manager import LocationRepository
 from .location_schemas import SLocation, SLocationAdd, SLocationId
 
@@ -29,7 +29,7 @@ async def get_locations() -> list[SLocation]:
 #     print('locations', location)
 #     return tracks
 
-# @location_router.post("/delete_location")
-# async def delete_all_location() -> list[SLocation]:
-#     locations = await LocationRepository.delete_all()
-#     return locations
+@location_router.post("/delete_all_locations")
+async def delete_all_location() -> list[SLocation]:
+    locations = await LocationRepository.delete_all()
+    return locations

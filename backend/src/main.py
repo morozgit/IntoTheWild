@@ -2,7 +2,7 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
-from backend.src.api.location_handlers import location_router
+from src.api.location_handlers import location_router
 
 app = FastAPI(title="IntoTheWild")
 app.include_router(location_router)
