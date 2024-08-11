@@ -4,20 +4,21 @@ from httpx import AsyncClient
 from backend.src.api.location_handlers import SLocationAdd
 
 
-@pytest.fixture
-async def test_set_location(client: AsyncClient):
+async def test_set_location(ac: AsyncClient):
     test_location = SLocationAdd(
         name="Атлай",
         description="Жемчужина Сибири",
         image="Gorniy-Altay.png")
-    response = client.post("/location", json=test_location.model_dump())
+    response = await ac.post("/location", json=test_location.model_dump())
     assert response.status_code == 200
     data = response.json()
+    print('data', data)
     assert data["ok"] == True
     assert "location_id" in data
 
-@pytest.mark.asyncio
-async def test_get_locations(client: AsyncClient):
-    response = await client.get("/location/all_location")
+
+async def test_get_locations(ac: AsyncClient):
+    response = await ac.get("/location/all_location")
     print(response.json())
     assert response.status_code == 200
+

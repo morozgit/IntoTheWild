@@ -10,8 +10,10 @@ updated_at = Annotated[datetime.datetime, mapped_column(
     onupdate=text("TIMEZONE('utc', now())"),
 )]
 
+
 class Base(DeclarativeBase):
     pass
+
 
 class LocationOrm(Base):
     __tablename__ = "locations"
@@ -23,6 +25,7 @@ class LocationOrm(Base):
     track: Mapped[List["TrackOrm"]] = relationship(
         back_populates="location",
     )
+
 
 class TrackOrm(Base):
     __tablename__ = "tracks"
