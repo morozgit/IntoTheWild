@@ -1,0 +1,32 @@
+/* src/components/Webcrumbs.css */
+#webcrumbs {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  
+  .container {
+    width: 810px;
+    min-height: 600px;
+    border-radius: 24px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    background-color: #fafafa;
+    padding: 24px;
+  }
+  
+  .header {
+    margin-bottom: 24px;
+  }
+  
+  .title {
+    font-family: 'Lato', sans-serif;
+    font-size: 24px;
+    color: #fa5b30;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  
