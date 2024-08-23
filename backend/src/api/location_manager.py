@@ -23,7 +23,6 @@ class LocationRepository:
     async def add_one_location(cls, data: SLocationAdd) -> int:
         async with async_session_maker() as session:
             location_dict = data.model_dump()
-            print('location_dict', location_dict)
             location = LocationOrm(**location_dict)
             session.add(location)
             await session.flush()
