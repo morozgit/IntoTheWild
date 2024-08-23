@@ -1,8 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
-# from backend.db.session import get_db
-from db.session import get_db
+from db.session import get_async_session
 from .location_manager import LocationRepository
 from .location_schemas import SLocation, SLocationAdd, SLocationId
 
@@ -11,8 +10,9 @@ location_router = APIRouter(
     tags=["Локации"],
 )
 
+
 @location_router.post("", response_model=SLocationId)
-async def add_location(location: SLocationAdd, db: AsyncSession = Depends(get_db)) -> SLocationId:
+async def add_location(location: SLocationAdd, db: AsyncSession = Depends(get_async_session)) -> SLocationId:
     location_id = await LocationRepository.add_one_location(location)
     return SLocationId(ok=True, location_id=location_id)
 

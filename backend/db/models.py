@@ -17,7 +17,7 @@ class Base(DeclarativeBase):
 
 class LocationOrm(Base):
     __tablename__ = "locations"
-
+    
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str]
     description: Mapped[str | None]
@@ -29,7 +29,7 @@ class LocationOrm(Base):
 
 class TrackOrm(Base):
     __tablename__ = "tracks"
-
+    
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str]
     description: Mapped[str | None]

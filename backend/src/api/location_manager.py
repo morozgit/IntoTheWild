@@ -1,15 +1,15 @@
 from sqlalchemy import select
 
 from db.models import LocationOrm
-from db.session import async_session
+from db.session import async_session_maker
 
-from .location_schemas import SLocation, SLocationAdd, SLocationId
+from .location_schemas import SLocation, SLocationAdd
 
 
 class LocationRepository:
     @classmethod
     async def _execute_query(cls, query):
-        async with async_session() as session:
+        async with async_session_maker() as session:
             result = await session.execute(query)
             location_models = result.scalars().all()
 
@@ -21,7 +21,7 @@ class LocationRepository:
 
     @classmethod
     async def add_one_location(cls, data: SLocationAdd) -> int:
-        async with async_session() as session:
+        async with async_session_maker() as session:
             location_dict = data.model_dump()
             print('location_dict', location_dict)
             location = LocationOrm(**location_dict)
@@ -42,7 +42,7 @@ class LocationRepository:
         query = select(LocationOrm)
         location_models, location_dicts = await cls._execute_query(query)
         
-        async with async_session() as session:
+        async with async_session_maker() as session:
             for location_model in location_models:
                 await session.delete(location_model)
             await session.commit()

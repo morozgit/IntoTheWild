@@ -1,29 +1,14 @@
-from typing import AsyncGenerator, Generator
-
+from typing import AsyncGenerator
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import MetaData
-from sqlalchemy.orm import declarative_base
-from src.config import DATABASE_URL
+from sqlalchemy.pool import NullPool
+from src.config import settings
+
+print('DATABASE_URL', settings.DATABASE_URL)
+engine = create_async_engine(settings.DATABASE_URL, echo=True, poolclass=NullPool)
+async_session_maker = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 
 
-print('DATABASE_URL', DATABASE_URL)
-
-Base = declarative_base()
-
-metadata = MetaData()
-
-engine = create_async_engine(DATABASE_URL, echo=True)
-async_session = sessionmaker(engine, expire_on_commit=False, class_=AsyncSession)
-
-
-# async def get_db() -> Generator:
-#     try:
-#         session: AsyncSession = async_session()
-#         yield session
-#     finally:
-#         await session.close()
-
-async def get_db() -> AsyncGenerator[AsyncSession, None]:
-    async with async_session() as session:
+async def get_async_session() -> AsyncGenerator[AsyncSession, None]:
+    async with async_session_maker() as session:
         yield session

@@ -11,6 +11,7 @@ def create_admin(app: FastAPI):
 class LocationAdmin(ModelView, model=LocationOrm):
     column_list = ["id", "name", "description", "image"]
 
+
 class TrackAdmin(ModelView, model=TrackOrm):
     column_list = ["id", "name", "description", "image", "created_at", "updated_at", "location_id"]
 

@@ -1,17 +1,12 @@
 import os
-from configparser import ConfigParser
+from configparser import RawConfigParser
 from dotenv import load_dotenv
+
 
 
 def get_database_url():
     load_dotenv()
-    DB_HOST_TEST = os.environ.get("DB_HOST_TEST")
-    DB_PORT_TEST = os.environ.get("DB_PORT_TEST")
-    DB_NAME_TEST = os.environ.get("DB_NAME_TEST")
-    DB_USER_TEST = os.environ.get("DB_USER_TEST")
-    DB_PASS_TEST = os.environ.get("DB_PASS_TEST")
-    print('DB_HOST_TEST', DB_NAME_TEST)
-    config = ConfigParser()
+    config = RawConfigParser()
     config.read('/home/user/Python/IntoTheWild/backend/alembic.ini')  # Укажите полный путь
     db_url_template = config.get('alembic', 'sqlalchemy.url')
     print('db_url_template', db_url_template)
