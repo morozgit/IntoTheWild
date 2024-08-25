@@ -1,58 +1,37 @@
-<!-- src/components/Webcrumbs.vue -->
 <template>
-    <div id="webcrumbs"> 
-      <div class="container">
-        <header class="header">
-          <h1 class="title">
-            Локации для путешествий
-          </h1>
-        </header>
-      
-        <div class="grid-container">
-          <LocationCard
-            imgSrc="https://tools-api.webcrumbs.org/image-placeholder/250/150/travel/1"
-            title="Лучший пляж"
-            description="Проведите незабываемый день на этом прекрасном пляже."
-          />
-          <LocationCard
-            imgSrc="https://tools-api.webcrumbs.org/image-placeholder/250/150/travel/2"
-            title="Горное озеро"
-            description="Поплавайте в чистых водах горного озера, окруженного природой."
-          />
-          <LocationCard
-            imgSrc="https://tools-api.webcrumbs.org/image-placeholder/250/150/travel/3"
-            title="Исторический город"
-            description="Посетите исторический город с множеством достопримечательностей."
-          />
-          <LocationCard
-            imgSrc="https://tools-api.webcrumbs.org/image-placeholder/250/150/travel/4"
-            title="Тропический лес"
-            description="Исследуйте густые тропические леса и наслаждайтесь природой."
-          />
-          <LocationCard
-            imgSrc="https://tools-api.webcrumbs.org/image-placeholder/250/150/travel/5"
-            title="Северное Сияние"
-            description="Наблюдайте за удивительными световыми эффектами северного сияния."
-          />
-          <LocationCard
-            imgSrc="https://tools-api.webcrumbs.org/image-placeholder/250/150/travel/6"
-            title="Загородний Домик"
-            description="Наслаждайтесь спокойствием и уютом загородного домика."
-          />
-        </div>
-      </div> 
+  <div id="app">
+    <TopBar />
+    <div class="main-content">
+      <router-view />
     </div>
-  </template>
-  
-  <script>
-  import LocationCard from './LocationCard.vue';
-  
-  export default {
-    components: {
-      LocationCard,
-    },
-  };
-  </script>
-  
-  <style src="./Webcrumbs.css" scoped></style>
-  
+    <BottomBar />
+  </div>
+</template>
+
+<script>
+import TopBar from './components/TopBar.vue'
+import BottomBar from './components/BottomBar.vue'
+
+export default {
+  name: 'App',
+  components: {
+    TopBar,
+    BottomBar
+  }
+}
+</script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  text-align: center;
+  color: #2c3e50;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Обеспечивает, что высота будет как минимум высотой экрана */
+}
+
+.main-content {
+  flex: 1; /* Позволяет основному контенту занимать доступное пространство */
+}
+</style>
