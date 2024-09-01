@@ -3,3 +3,4 @@ dev
 изменения в dev
 изменеия в master
 изменеия в master1
+изменеия в master2
