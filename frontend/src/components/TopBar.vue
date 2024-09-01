@@ -45,5 +45,6 @@ export default {
   font-size: 30px;
   font-weight: bold;
   color: black;
+  cursor: pointer;
 }
 </style>

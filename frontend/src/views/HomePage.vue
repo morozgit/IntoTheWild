@@ -6,6 +6,7 @@
 
 <script>
 import LocationCard from '@/components/LocationCard.vue';
+import axios from "axios";
 
 export default {
   components: {
@@ -13,11 +14,22 @@ export default {
   },
   data() {
     return {
-      locations: [
-        { id: 1, name: 'Горный Алтай', image: 'Gorniy-Altay.png' },
-        { id: 2, name: 'Шерегеш', image: 'sheregesh.png' }
-      ]
+      locations: []
     };
+  },
+  methods: {
+    async fetchAllLocations() {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/location/all_location');
+        this.locations = response.data;
+        console.log('Locations fetched:', this.locations);
+      } catch (error) {
+        console.error('Error fetching locations:', error);
+      }
+    }
+  },
+  mounted() {
+    this.fetchAllLocations();
   }
 }
 </script>
