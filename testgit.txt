@@ -2,6 +2,7 @@ master
 dev
 изменения в dev
 изменеия в master
+изменения в dev
 изменеия в master1
 изменеия в master2
 изменеия в master3
