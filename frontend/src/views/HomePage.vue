@@ -14,10 +14,7 @@ export default {
   },
   data() {
     return {
-      locations: [
-        { id: 1, name: 'Горный Алтай', image: 'Gorniy-Altay.png' },
-        { id: 2, name: 'Шерегеш', image: 'sheregesh.png' }
-      ]
+      locations: []
     };
   },
   methods: {

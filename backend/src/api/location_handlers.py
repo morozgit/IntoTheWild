@@ -4,6 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from db.session import get_async_session
 from .location_manager import LocationRepository
 from .location_schemas import SLocation, SLocationAdd, SLocationId
+from .track_manager import TrackRepository
 
 location_router = APIRouter(
     prefix="/location",
@@ -23,11 +24,11 @@ async def get_locations() -> list[SLocation]:
     return locations
 
 
-# @location_router.get("/{location}")
-# async def get_location(location: int):
-#     tracks = await TrackRepository.get_location_tracks(location)
-#     print('locations', location)
-#     return tracks
+@location_router.get("/{location_id}")
+async def get_location(location_id: int):
+    tracks = await TrackRepository.get_location_tracks(location_id)
+    return tracks
+
 
 @location_router.post("/delete_all_locations")
 async def delete_all_location() -> list[SLocation]:

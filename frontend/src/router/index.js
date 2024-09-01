@@ -6,7 +6,7 @@ import LocationDetail from '@/views/LocationDetail.vue';
 const routes = [
   { path: '/', name: 'Home', component: HomePage },
   { path: '/contact', name: 'Contact', component: ContactPage },
-  { path: '/location/:id', name: 'LocationDetail', component: LocationDetail }
+  { path: '/location/:location_id', name: 'LocationDetail', component: LocationDetail }
 ];
 
 const router = createRouter({
