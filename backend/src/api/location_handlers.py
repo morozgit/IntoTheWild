@@ -1,3 +1,4 @@
+import boto3
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -11,6 +12,11 @@ location_router = APIRouter(
     tags=["Локации"],
 )
 
+session = boto3.session.Session()
+s3 = session.client(
+    service_name='s3',
+    endpoint_url='https://storage.yandexcloud.net'
+)
 
 @location_router.post("", response_model=SLocationId)
 async def add_location(location: SLocationAdd, db: AsyncSession = Depends(get_async_session)) -> SLocationId:
@@ -22,6 +28,18 @@ async def add_location(location: SLocationAdd, db: AsyncSession = Depends(get_as
 async def get_locations() -> list[SLocation]:
     locations = await LocationRepository.find_all()
     return locations
+
+@location_router.get("/images")
+def get_images():
+    bucket_name = 'into-the-wild-images'
+    base_url = f'https://storage.yandexcloud.net/{bucket_name}/'
+    
+    images = []
+    for key in s3.list_objects(Bucket=bucket_name)['Contents']:
+        image_url = base_url + key['Key']
+        images.append(image_url)
+    print('images', images)
+    return images
 
 
 @location_router.get("/{location_id}")
