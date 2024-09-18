@@ -14,4 +14,3 @@ class LocationAdmin(ModelView, model=LocationOrm):
 
 class TrackAdmin(ModelView, model=TrackOrm):
     column_list = ["id", "name", "description", "image", "created_at", "updated_at", "location_id"]
-

@@ -1,6 +1,4 @@
 from sqlalchemy import select
-from sqlalchemy.orm import joinedload
-from typing import List
 from db.models import TrackOrm
 from db.session import async_session_maker
 
@@ -19,7 +17,6 @@ class TrackRepository:
                 track_dict.pop('_sa_instance_state', None)
 
             return track_models, track_dict
-    
 
     @classmethod
     async def add_one_track(cls, data: STrackAdd) -> int:
@@ -30,7 +27,7 @@ class TrackRepository:
             await session.flush()
             await session.commit()
             return track.id
-        
+
     @classmethod
     async def get_location_tracks(cls, location_id: int) -> list[STrack]:
         async with async_session_maker() as session:
