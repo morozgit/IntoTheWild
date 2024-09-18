@@ -79,4 +79,4 @@ jobs:
       
       - name: Deploy
         run: |
-          bush deploy.sh
+          bash deploy.sh
