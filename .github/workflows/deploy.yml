@@ -25,7 +25,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip3 install --upgrade pip
           pip3 install -r requirements.txt
 
       - name: Run flake8
@@ -48,7 +47,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip3 install --upgrade pip
           pip3 install -r requirements.txt
 
       - name: Run tests
