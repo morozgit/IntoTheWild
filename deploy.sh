@@ -1,9 +1,9 @@
 #!/bin/bash
 
 git checkout master
-git pull origin master
+git pull
 
-/usr/local/bin/docker-compose down
-/usr/local/bin/docker-compose up -build
+docker-compose down
+docker-compose up -build
 
 echo "Deployment completed successfully"
