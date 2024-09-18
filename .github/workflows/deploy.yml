@@ -10,9 +10,10 @@ on:
       - master
 
 jobs:
-  flake8-lint:
-    runs-on: ubuntu-latest
+  lint:
     name: Lint
+    runs-on: ubuntu-latest
+
     steps:
       - name: Check out source repository
         uses: actions/checkout@v3
