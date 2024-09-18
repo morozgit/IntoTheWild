@@ -71,8 +71,12 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_INTO_THE_WILD }}
 
-      - name: Deploy
+      - name: Connect
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} 'bash -s' < deploy.sh
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_INTO_THE_WILD }}
+      
+      - name: Deploy
+        run: |
+          bush deploy.sh
