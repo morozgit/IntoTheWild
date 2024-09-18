@@ -79,5 +79,5 @@ jobs:
       
       - name: Deploy
         run: |
-          pwd
-          ls -a
+          chmod +x deploy.sh
+          ./deploy.sh
