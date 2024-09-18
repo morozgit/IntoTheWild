@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   props: {
     location: {
@@ -16,22 +15,12 @@ export default {
   },
   computed: {
     imageSrc() {
-
-      return this.location.image;
+      return `/images/${this.location.image}`;
     }
   },
   methods: {
-    async fetchAllLocations() {
-      try {
-        const response = await axios.get('http://127.0.0.1:8000/location/images');
-        this.locations = response.data;
-        console.log('Locations fetched:', this.locations.image);
-      } catch (error) {
-        console.error('Error fetching locations:', error);
-      }
-    },
     goToDetail() {
-      this.$router.push({ name: 'LocationDetail', params: { location_id: this.location.image } });
+      this.$router.push({ name: 'LocationDetail', params: { location_id: this.location.id } });
     }
   }
 }
