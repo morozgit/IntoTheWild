@@ -29,7 +29,7 @@
       const fetchTrack = async () => {
         try {
           console.log(`Fetching data for track ID: ${locationId.value}`);
-          const response = await axios.get(`http://localhost:8000/location/${locationId.value}`);
+          const response = await axios.get(`http://31.129.44.137/location/${locationId.value}`);
           console.log('API Response:', response.data);
           track.value = response.data;
         } catch (err) {
