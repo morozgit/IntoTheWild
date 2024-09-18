@@ -40,7 +40,7 @@ class LocationRepository:
     async def delete_all(cls) -> list[SLocation]:
         query = select(LocationOrm)
         location_models, location_dicts = await cls._execute_query(query)
-        
+
         async with async_session_maker() as session:
             for location_model in location_models:
                 await session.delete(location_model)

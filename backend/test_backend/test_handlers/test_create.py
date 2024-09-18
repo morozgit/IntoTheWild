@@ -24,7 +24,7 @@ async def test_get_locations(ac: AsyncClient):
     assert response.status_code == 200
     data = response.json()
     print(data)
-    assert isinstance(data, list) 
+    assert isinstance(data, list)
     if data:
         assert "name" in data[0]
         assert "description" in data[0]

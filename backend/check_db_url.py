@@ -3,14 +3,13 @@ from configparser import RawConfigParser
 from dotenv import load_dotenv
 
 
-
 def get_database_url():
     load_dotenv()
     config = RawConfigParser()
-    config.read('/home/user/Python/IntoTheWild/backend/alembic.ini')  # Укажите полный путь
+    config.read('/home/user/Python/IntoTheWild/backend/alembic.ini')
     db_url_template = config.get('alembic', 'sqlalchemy.url')
     print('db_url_template', db_url_template)
-    
+
     db_url = db_url_template % {
         'DB_USER': os.environ.get('DB_USER'),
         'DB_PASS': os.environ.get('DB_PASS'),
@@ -20,6 +19,7 @@ def get_database_url():
     }
 
     return db_url
+
 
 if __name__ == "__main__":
 

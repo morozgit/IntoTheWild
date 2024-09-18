@@ -17,7 +17,7 @@ class Base(DeclarativeBase):
 
 class LocationOrm(Base):
     __tablename__ = "locations"
-    
+
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str]
     description: Mapped[str | None]
@@ -25,14 +25,14 @@ class LocationOrm(Base):
     track: Mapped[List["TrackOrm"]] = relationship(
         back_populates="location",
     )
-    
+
     def __repr__(self):
         return f"<LocationOrm(id={self.id}, name={self.name})>"
 
 
 class TrackOrm(Base):
     __tablename__ = "tracks"
-    
+
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str]
     description: Mapped[str | None]
@@ -43,6 +43,6 @@ class TrackOrm(Base):
     location: Mapped["LocationOrm"] = relationship(
         back_populates="track",
     )
-    
+
     def __repr__(self):
         return f"<TrackOrm(id={self.id}, name={self.name}, location_id={self.location_id})>"
