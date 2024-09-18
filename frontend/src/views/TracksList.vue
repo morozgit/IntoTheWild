@@ -31,7 +31,7 @@
           console.log(`Fetching data for track ID: ${locationId.value}`);
           const response = await axios.get(`http://localhost:8000/location/${locationId.value}`);
           console.log('API Response:', response.data);
-          track.value = response.data; // Проверьте структуру данных
+          track.value = response.data;
         } catch (err) {
           console.error('Error fetching track:', err.response ? err.response.data : err.message);
           error.value = 'Не удалось загрузить данные';
