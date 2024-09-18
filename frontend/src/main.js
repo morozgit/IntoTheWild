@@ -1,4 +1,4 @@
-import { createApp } from 'vue';  // Обратите внимание на использование createApp
+import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
 import './main.css'
