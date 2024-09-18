@@ -3,9 +3,8 @@
 git checkout master
 git pull
 
-docker compose --version
-
 docker compose down
-docker compose up -build
+docker compose build
+docker compose up
 
 echo "Deployment completed successfully"
