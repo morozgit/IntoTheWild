@@ -74,7 +74,7 @@ jobs:
       - name: Deploy
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << EOF
-            pwd
+            cd /root/IntoTheWild
             git pull
             chmod +x deploy.sh
             ./deploy.sh
