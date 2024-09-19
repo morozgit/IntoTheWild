@@ -79,7 +79,7 @@ jobs:
       
       - name: Deploy
         run: |
-          git pull
+          git pull origin/master
           chmod +x deploy.sh
           ./deploy.sh
         env:
