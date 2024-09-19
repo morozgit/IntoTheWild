@@ -20,7 +20,7 @@ export default {
   methods: {
     async fetchAllLocations() {
       try {
-        const response = await axios.get('http://31.129.44.137/location/all_location');
+        const response = await axios.get('http://31.129.44.137/api/location/all_location');
         this.locations = response.data;
         console.log('Locations fetched:', this.locations);
       } catch (error) {
