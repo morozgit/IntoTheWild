@@ -43,7 +43,6 @@
       onMounted(fetchTrack);
   
       const imageSrc = computed(() => {
-        // Убедитесь, что путь к изображению корректен
         return track.value ? `/images/${track.value.image}` : '';
       });
   
