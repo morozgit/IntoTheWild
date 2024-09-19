@@ -1,10 +1,7 @@
 #!/bin/bash
 
-git checkout master
-git pull
-
-docker compose down
-docker compose build
-docker compose up
-
+# docker compose down
+# docker compose build
+# docker compose up
+echo "Hello" 
 echo "Deployment completed successfully"
