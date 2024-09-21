@@ -21,6 +21,7 @@ services:
     container_name: postgres
     environment:
       POSTGRES_PASSWORD: postgres
+      DB_HOST: postgres
     ports:
       - "5432:5432"
     networks:
