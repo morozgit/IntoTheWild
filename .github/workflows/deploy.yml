@@ -75,7 +75,6 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'ENDSSH'
             set -e
-            sudo systemctl restart nginx
             cd /root/IntoTheWild
             git reset --hard
             git pull
