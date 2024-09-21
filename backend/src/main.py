@@ -1,16 +1,13 @@
 import uvicorn
 from fastapi import FastAPI
-from src.admin import create_admin
+from fastapi.middleware.cors import CORSMiddleware
+from src.admin import LocationAdmin, TrackAdmin, create_admin
 from src.api.location_handlers import location_router
 from src.api.track_handlers import track_router
 
-from src.admin import LocationAdmin, TrackAdmin
-from fastapi.middleware.cors import CORSMiddleware
-
-
 app = FastAPI(title="IntoTheWild")
-app.include_router(location_router)
-app.include_router(track_router)
+app.include_router(location_router, prefix="/api/location", tags=["Location"])
+app.include_router(track_router, prefix="/api/track", tags=["Track"])
 admin = create_admin(app)
 admin.add_view(LocationAdmin)
 admin.add_view(TrackAdmin)
