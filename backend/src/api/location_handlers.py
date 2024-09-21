@@ -1,13 +1,13 @@
+from db.session import get_async_session
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from db.session import get_async_session
 from .location_manager import LocationRepository
 from .location_schemas import SLocation, SLocationAdd, SLocationId
 from .track_manager import TrackRepository
 
 location_router = APIRouter(
-    prefix="/location",
+    prefix="/api/location",
     tags=["Локации"],
 )
 
