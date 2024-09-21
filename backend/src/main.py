@@ -6,8 +6,8 @@ from src.api.location_handlers import location_router
 from src.api.track_handlers import track_router
 
 app = FastAPI(title="IntoTheWild")
-app.include_router(location_router, prefix="/api/location", tags=["Location"])
-app.include_router(track_router, prefix="/api/track", tags=["Track"])
+app.include_router(location_router)
+app.include_router(track_router)
 admin = create_admin(app)
 admin.add_view(LocationAdmin)
 admin.add_view(TrackAdmin)
