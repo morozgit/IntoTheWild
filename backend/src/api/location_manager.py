@@ -33,6 +33,8 @@ class LocationRepository:
     async def find_all(cls) -> list[SLocation]:
         query = select(LocationOrm)
         location_models, location_dicts = await cls._execute_query(query)
+        if not location_dicts:
+            return []
         location_schemas = [SLocation.model_validate(loc_dict) for loc_dict in location_dicts]
         return location_schemas
 
