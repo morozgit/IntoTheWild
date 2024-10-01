@@ -1,9 +1,12 @@
 import uvicorn
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from src.admin import LocationAdmin, TrackAdmin, create_admin
+from src.admin import create_admin
 from src.api.location_handlers import location_router
 from src.api.track_handlers import track_router
+
+from src.admin import LocationAdmin, TrackAdmin
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI(title="IntoTheWild")
 app.include_router(location_router)
@@ -15,12 +18,12 @@ admin.add_view(TrackAdmin)
 origins = [
     # "http://localhost:8080",
     # "http://127.0.0.1:8080",
-    "http://31.129.44.137",
+    "http://31.129.44.137"
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
