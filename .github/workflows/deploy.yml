@@ -70,18 +70,18 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_KEY_INTO_THE_WILD }}       
-      
+
       - name: Deploy
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << EOF
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'ENDSSH'
+            set -e
             cd /root/IntoTheWild
             git reset --hard
             git pull
             chmod +x deploy.sh
             ./deploy.sh
-          EOF
+          ENDSSH
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_INTO_THE_WILD }}
           MODE: ${{ secrets.MODE }}
           DB_HOST: ${{ secrets.DB_HOST }}
           DB_PORT: ${{ secrets.DB_PORT }}

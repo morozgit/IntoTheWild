@@ -1,12 +1,12 @@
+from db.session import get_async_session
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from db.session import get_async_session
 from .track_manager import TrackRepository
 from .track_schemas import STrackAdd, STrackId
 
 track_router = APIRouter(
-    prefix="/track",
+    prefix="/api/track",
     tags=["Маршруты"],
 )
 

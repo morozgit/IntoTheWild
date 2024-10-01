@@ -10,7 +10,7 @@ async def test_set_location(ac: AsyncClient):
         "description": "Жемчужина Сибири",
         "image": "Gorniy-Altay.png"
     }
-    response = await ac.post("/location", json=test_location)
+    response = await ac.post("/api/location", json=test_location)
     assert response.status_code == 200
     data = response.json()
     print('data', data)
@@ -20,7 +20,7 @@ async def test_set_location(ac: AsyncClient):
 
 @pytest.mark.asyncio
 async def test_get_locations(ac: AsyncClient):
-    response = await ac.get("/location/all_location")
+    response = await ac.get("/api/location/all_location")
     assert response.status_code == 200
     data = response.json()
     print(data)
