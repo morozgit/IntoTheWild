@@ -18,7 +18,7 @@ admin.add_view(TrackAdmin)
 origins = [
     "http://localhost:8080",
     "http://127.0.0.1:8080",
-    "http://192.168.0.114"
+    "http://192.168.3.4"
 ]
 
 app.add_middleware(
