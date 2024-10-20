@@ -7,7 +7,7 @@ from .location_schemas import SLocation, SLocationAdd, SLocationId
 from .track_manager import TrackRepository
 
 location_router = APIRouter(
-    prefix="/location",
+    prefix="/api/location",
     tags=["Локации"],
 )
 

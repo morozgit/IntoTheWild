@@ -6,7 +6,7 @@ from .track_manager import TrackRepository
 from .track_schemas import STrackAdd, STrackId
 
 track_router = APIRouter(
-    prefix="/track",
+    prefix="/api/track",
     tags=["Маршруты"],
 )
 
